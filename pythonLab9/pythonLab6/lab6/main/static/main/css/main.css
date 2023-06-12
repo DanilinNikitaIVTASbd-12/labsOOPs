@@ -1,0 +1,32 @@
+table, th, td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+.usersContainer {
+    width: 710px;
+}
+
+.userOrdersContainer {
+    width: 710px;
+}
+
+.addFormContainer {
+    width: 711px;
+}
+
+.addFormContainer form {
+    margin-top: 25px;
+}
+
+.addFormContainer form input {
+    margin-bottom: 5px;
+}
+
+.addFormContainer form button {
+    margin-left: 10px;
+}
+
+.editOrderContainer form button {
+    margin-left: 10px;
+}

@@ -1,0 +1,4 @@
+Django==4.2.1
+django-environ
+gunicorn==20.0.4
+psycopg2

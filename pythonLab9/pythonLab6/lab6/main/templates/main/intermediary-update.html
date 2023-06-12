@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+    <div class="editOrderContainer">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.customerId }}
+            {{ form.product }}
+            {{ form.time }}
+            {{ form.guarantee }}
+
+            <button type="submit">Изменить посредника</button>
+        </form>
+    </div>
+{% endblock %}

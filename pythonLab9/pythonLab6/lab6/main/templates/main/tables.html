@@ -1,0 +1,140 @@
+ {% if visitors %}
+        <h1>Таблица посетителей магазина:</h1>
+        <div class="usersContainer">
+            <table>
+                <tr>
+                    <th>Номер пользователя</th>
+                    <th>Имя пользователя</th>
+                    <th>Пол пользователя</th>
+                    <th>Дата и время входа</th>
+                    <th>Онлайн</th>
+                </tr>
+
+        {% for el in visitors %}
+                <tr>
+                    <td>{{ el.id }}</td>
+                    <td>{{ el.name }}</td>
+                    <td>{{ el.gender }}</td>
+                    <td>{{ el.date }}</td>
+                    <td>{{ el.online }}</td>
+                </tr>
+        {% endfor %}
+    {% else %}
+        <p>Таблица пользователей банка пуста.</p>
+    {% endif %}
+            </table>
+        </div>
+
+    {% if orders %}
+        <h1>Таблица переводов пользователей банка:</h1>
+        <div class="userOrdersContainer">
+            <table>
+                <tr>
+                    <th>Номер перевода</th>
+                    <th>Номер пользователя</th>
+                    <th>категория заказа</th>
+                    <th>Сумма перевода</th>
+                    <th>Дата и время перевода</th>
+                </tr>
+
+        {% for el in orders %}
+                <tr>
+                    <td>{{ el.id }}</td>
+                    <td>{{ el.visitorNumber.id }}</td>
+                    <td>{{ el.title }}</td>
+                    <td>{{ el.price }}</td>
+                    <td>{{ el.date }}</td>
+                </tr>
+        {% endfor %}
+    {% else %}
+        <p>Таблица переводов пользователей банка пуста.</p>
+    {% endif %}
+            </table>
+        </div>
+
+    {% if bank %}
+        <h1>Таблица банка:</h1>
+        <div class="shopsContainer">
+            <table>
+                <tr>
+                    <th>Номер банка</th>
+                    <th>Название банка</th>
+                    <th>Месторасположение банка</th>
+                    <th>Рейтинг банка</th>
+                </tr>
+
+        {% for el in bank %}
+                <tr>
+                    <td>{{ el.id }}</td>
+                    <td>{{ el.name }}</td>
+                    <td>{{ el.address }}</td>
+                    <td>{{ el.square }}</td>
+                </tr>
+        {% endfor %}
+    {% else %}
+        <p>Таблица банков пуста.</p>
+    {% endif %}
+            </table>
+        </div>
+
+    {% if employees %}
+        <h1>Таблица сотрудников банка:</h1>
+        <div class="employeesContainer">
+            <table>
+                <tr>
+                    <th>Номер сотрудника</th>
+                    <th>Номер банка</th>
+                    <th>Имя</th>
+                    <th>Пол</th>
+                    <th>Должность</th>
+                    <th>Заработная плата</th>
+                </tr>
+
+        {% for el in employees %}
+                <tr>
+                    <td>{{ el.id }}</td>
+                    <td>{{ el.bankId.id }}</td>
+                    <td>{{ el.name }}</td>
+                    <td>{{ el.gender }}</td>
+                    <td>{{ el.position }}</td>
+                    <td>{{ el.salary }}</td>
+                </tr>
+        {% endfor %}
+    {% else %}
+        <p>Таблица сотрудников банка пуста.</p>
+    {% endif %}
+            </table>
+        </div>
+
+    {% if intermediary %}
+        <h1>Таблица посредников:</h1>
+        <div class="usersContainer">
+            <table>
+                <tr>
+                    <th>Номер посредника</th>
+                    <th>Номера банков</th>
+                    <th>Категория перевода</th>
+                    <th>Сроки перевода</th>
+                    <th>Гарантия</th>
+                </tr>
+
+        {% for el in intermediary %}
+                <tr>
+                    <td>{{ el.id }}</td>
+                    <td>
+                        {% for elem in el.customerId.all %}
+                            {% if intermediary %}
+                                {{ elem.id}}<br>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ el.product }}</td>
+                    <td>{{ el.time }}</td>
+                    <td>{{ el.guarantee }}</td>
+                </tr>
+        {% endfor %}
+    {% else %}
+        <p>Таблица посредников пуста.</p>
+    {% endif %}
+            </table>
+        </div>
