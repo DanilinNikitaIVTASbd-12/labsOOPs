@@ -1,0 +1,72 @@
+
+        {% if visitors %}
+        <h1>Таблица посетителей магазина:</h1>
+        <div class="usersContainer">
+            <table>
+                <tr>
+                    <th>Номер пользователя</th>
+                    <th>Имя пользователя</th>
+                    <th>Пол пользователя</th>
+                    <th>Дата и время входа</th>
+                    <th>Онлайн</th>
+                    <th>Редактировать</th>
+                </tr>
+
+        {% for el in visitors %}
+                <tr>
+                    <td>{{ el.id }}</td>
+                    <td>{{ el.name }}</td>
+                    <td>{{ el.gender }}</td>
+                    <td>{{ el.date }}</td>
+                    <td>{{ el.online }}</td>
+                    <td><a href="{% url 'visitor-update' el.id %}"><img src="static/main/images/editTableEntry.png" width="40" height="40" alt=""></a></td>
+                </tr>
+        {% endfor %}
+    {% else %}
+        <p>Таблица пользователей банка пуста.</p>
+    {% endif %}
+            </table>
+        </div>
+
+    {% if orders %}
+        <h1>Таблица переводов пользователей банков:</h1>
+        <div class="userOrdersContainer">
+            <table>
+                <tr>
+                    <th>Номер перевода</th>
+                    <th>Номер пользователя</th>
+                    <th>Категория перевода</th>
+                    <th>Сумма перевода</th>
+                    <th>Дата и время перевода</th>
+                    <th>Редактировать</th>
+                    <th>Удалить</th>
+                </tr>
+
+        {% for el in orders %}
+                <tr>
+                    <td>{{ el.id }}</td>
+                    <td>{{ el.visitorNumber.id }}</td>
+                    <td>{{ el.title }}</td>
+                    <td>{{ el.price }}</td>
+                    <td>{{ el.date }}</td>
+                    <td><a href="{% url 'order-update' el.id %}"><img src="static/main/images/editTableEntry.png" width="40" height="40" alt=""></a></td>
+                    <td><a href="{% url 'order-delete' el.id %}"><img src="static/main/images/deleteTableEntry.png" width="25" height="25" alt=""></a></td>
+                </tr>
+        {% endfor %}
+    {% else %}
+        <p>Таблица переводов пользователей банков пуста.</p>
+    {% endif %}
+            </table>
+        </div>
+
+    <div class="addFormContainer">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.visitorNumber }}
+            {{ form.title }}
+            {{ form.price }}
+            {{ form.date }}
+
+            <button type="submit">Добавить перевод</button><br>
+        </form>
+    </div>
