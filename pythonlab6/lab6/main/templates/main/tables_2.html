@@ -1,0 +1,30 @@
+    {% if employees %}
+        <h1>Таблица сотрудников компании:</h1>
+        <div class="employeesContainer">
+            <table>
+                <tr>
+                    <th>Номер сотрудника</th>
+                    <th>Номер магазина</th>
+                    <th>Имя</th>
+                    <th>Пол</th>
+                    <th>Должность</th>
+                    <th>Заработная плата</th>
+                    <th>Редактировать</th>
+                </tr>
+
+        {% for el in employees %}
+                <tr>
+                    <td>{{ el.id }}</td>
+                    <td>{{ el.bankId.id }}</td>
+                    <td>{{ el.name }}</td>
+                    <td>{{ el.gender }}</td>
+                    <td>{{ el.position }}</td>
+                    <td>{{ el.salary }}</td>
+                    <td><a href="{% url 'employee-update' el.id %}"><img src="static/main/images/editTableEntry.png" width="40" height="40" alt=""></a></td>
+                </tr>
+        {% endfor %}
+    {% else %}
+        <p>Таблица сотрудников банка пуста.</p>
+    {% endif %}
+            </table>
+        </div>

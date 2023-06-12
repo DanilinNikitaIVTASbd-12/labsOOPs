@@ -1,0 +1,71 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+    {% if visitors %}
+        <h1>Таблица пользователей:</h1>
+        <table>
+        <tr>
+            <th>Номер</th>
+            <th>Имя</th>
+            <th>Пол</th>
+            <th>Дата и время входа</th>
+            <th>Статус</th>
+        </tr>
+
+        {% for el in visitors %}
+                <tr>
+                    <td>{{ el.id }}</td>
+                    <td>{{ el.name }}</td>
+                    <td>{{ el.gender }}</td>
+                    <td>{{ el.date }}</td>
+                    <td>{{ el.online }}</td>
+                </tr>
+        {% endfor %}
+    {% else %}
+        <p>Таблица посетителей пуста</p>
+    {% endif %}
+    </table>
+
+    {% if orders %}
+        <h1>Таблица финансовых переводов пользователей:</h1>
+        <div class="container">
+            <table>
+                <tr>
+                    <th>Номер заказа</th>
+                    <th>Номер посетителя</th>
+                    <th>Категория перевода</th>
+                    <th>Сумма перевода</th>
+                    <th>Дата и время заказа</th>
+                    <th></th>
+                </tr>
+
+        {% for el in orders %}
+                <tr>
+                    <td>{{ el.id }}</td>
+                    <td>{{ el.visitorNumber.id }}</td>
+                    <td>{{ el.title }}</td>
+                    <td>{{ el.price }}</td>
+                    <td>{{ el.date }}</td>
+                    <td><a href="{% url 'order-update' el.id %}">Редактировать</a></td>
+                    <td><a href="{% url 'order-delete' el.id %}">Удалить</a></td>
+                </tr>
+        {% endfor %}
+    {% else %}
+        <p>Таблица переводов пользователей пуста</p>
+    {% endif %}
+            </table>
+        </div>
+
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.visitorNumber }}
+            {{ form.title }}
+            {{ form.price }}
+            {{ form.date }}
+
+            <button type="submit">Добавить перевод</button><br>
+            <span>{{ error }}</span>
+        </form>
+    </div>
+{% endblock %}

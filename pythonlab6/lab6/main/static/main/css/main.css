@@ -1,0 +1,26 @@
+table, th, td {
+  border: 1px solid black;
+  text-align: center;
+}
+
+.container {
+    float: left;
+    margin-right: 25px;
+    text-align: center;
+}
+
+.container form {
+    margin-bottom: 5px;
+}
+
+.container form input {
+    margin-bottom: 5px;
+}
+
+.container form span {
+    color: red;
+}
+
+.container form button {
+    margin-left: 5px;
+}

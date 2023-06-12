@@ -1,0 +1,10 @@
+{% extends 'main/layout.html' %}
+
+{% block content %}
+    <div class="container">
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Удалить заказ</button>
+        </form>
+    </div>
+{% endblock %}c
